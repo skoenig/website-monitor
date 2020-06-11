@@ -1,0 +1,117 @@
+---
+minimum_pre_commit_version: 1.21.0
+fail_fast: false
+default_stages: [commit, push]
+repos:
+  # meta
+
+  - repo: meta
+    hooks:
+      - id: check-hooks-apply
+      - id: check-useless-excludes
+
+  # formatters
+
+  - repo: https://github.com/asottile/reorder_python_imports
+    rev: v2.0.0
+    hooks:
+      - id: reorder-python-imports
+
+  - repo: https://github.com/ambv/black
+    rev: 19.10b0
+    hooks:
+      - id: black
+
+  - repo: https://github.com/asottile/pyupgrade
+    rev: v2.1.0
+    hooks:
+      - id: pyupgrade
+        stages: [push]
+
+  # linters
+
+  - repo: local
+    hooks:
+      - id: pytest
+        name: pytest
+        entry: pytest
+        language: system
+        types: [python]
+        files: ^tests\/.*test_.*\.py$
+        pass_filenames: false  # or use with: require_serial
+
+  - repo: https://github.com/PyCQA/bandit
+    rev: 1.6.2
+    hooks:
+      - id: bandit
+        args: ["-x", "tests"]
+        stages: [push]
+
+  - repo: https://github.com/PyCQA/pydocstyle
+    rev: 5.0.2
+    hooks:
+      - id: pydocstyle
+        args: ["--ignore=D10,D21"]
+
+
+  - repo: local
+    hooks:
+      # https://github.com/pre-commit/mirrors-pylint/issues/11
+      - id: pylint
+        name: pylint
+        entry: pylint --rcfile setup.cfg monitor
+        types: [python]
+        language: system
+        pass_filenames: false
+
+      - id: safety
+        name: safety
+        entry: safety
+        language: system
+        pass_filenames: false
+        args: ["check", "--bare"]
+        stages: [push]
+
+      - id: poetry
+        name: poetry
+        description: Validates the structure of the pyproject.toml file
+        entry: poetry check
+        language: system
+        pass_filenames: false
+        files: ^pyproject.toml$
+        stages: [push]
+
+  - repo: https://github.com/adrienverge/yamllint
+    rev: v1.20.0
+    hooks:
+      - id: yamllint
+        args: ["--strict", "-d", "{rules: {line-length: {max: 180}}}"]
+
+  # miscellaneous
+
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v2.5.0
+    hooks:
+      - id: check-added-large-files
+      - id: check-docstring-first
+      - id: debug-statements
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+      - id: check-ast
+      - id: check-builtin-literals
+      - id: detect-private-key
+      - id: mixed-line-ending
+
+  - repo: https://gitlab.com/pycqa/flake8
+    rev: master
+    hooks:
+      - id: flake8
+
+  - repo: https://github.com/pre-commit/pygrep-hooks
+    rev: v1.5.1
+    hooks:
+      - id: python-use-type-annotations
+      - id: python-no-log-warn
+      - id: python-no-eval
+      - id: python-check-mock-methods
+      - id: python-check-blanket-noqa
