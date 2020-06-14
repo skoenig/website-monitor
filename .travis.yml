@@ -19,12 +19,15 @@ addons:
 
 jobs:
   include:
+
     - stage: lint
       install:
-        - pip install pre-commit
-        - pre-commit install
+        - pip install poetry pre-commit
+        - poetry install -v
+        - poetry run pre-commit install
       script:
-        - pre-commit run --all-files
+        - poetry run pre-commit run --all-files
+
     - stage: test
       before_install:
         - sudo cp /etc/postgresql/{9.6,12}/main/pg_hba.conf
@@ -37,7 +40,6 @@ jobs:
       after_script:
         - rm -f ~/.config/monitor.yaml
       install:
-        - pip install --upgrade pip
         - pip install poetry
         - poetry install -v
       script:
