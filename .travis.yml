@@ -9,8 +9,13 @@ stages:
 cache:
   pip: true
   directories:
-  - "$HOME/.cache/pre-commit"
+    - "$HOME/.cache/pre-commit"
 
+services:
+  - postgresql
+
+addons:
+  postgresql: "12"
 
 jobs:
   include:
@@ -25,5 +30,13 @@ jobs:
         - pip install --upgrade pip
         - pip install poetry
         - poetry install -v
+      before_script:
+        - cp monitor.example-config.yaml ~/.config/monitor.yaml
+        - |
+          sed -i "s|host:.*$|host: 'localhost'|" ~/.config/monitor.yaml
+          sed -i "s|user:.*$|user: 'postgres'|" ~/.config/monitor.yaml
+          sed -i "s|password:.*$|password: ''|" ~/.config/monitor.yaml
+      after_script:
+        - rm -f ~/.config/monitor.yaml
       script:
         - poetry run pytest tests
