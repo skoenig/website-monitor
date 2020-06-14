@@ -11,7 +11,7 @@ A Kafka producer periodically checks (using [APScheduler](https://apscheduler.re
 
 These result will be sent to a Kafka topic, and written to a PostgreSQL database by a Kafka consumer.
 
-[![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://badges.mit-license.org)
+[![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://badges.mit-license.org)[![Build Status](http://img.shields.io/travis/badges/badgerbadgerbadger.svg?style=flat-square)](https://travis-ci.org/badges/badgerbadgerbadger)
 
 ## Prerequisites
 You will need a Kafka instance with certificate/SSL authentication enabled.
@@ -42,6 +42,11 @@ With the virtualenv created by Poetry you should have a complete development env
 Make sure to commit from within the Poetry virtualenv:
 
     poetry shell
+
+Before committing, you should run tests and linters (linters will also be run by pre-commit hooks):
+
+    make test
+    make lint
 
 ## Contributing
 
