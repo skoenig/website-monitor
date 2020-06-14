@@ -9,6 +9,11 @@ repository = "https://github.com/skoenig/aiven-website-monitor"
 
 [tool.poetry.dependencies]
 python = "^3.7"
+PyYAML = "^5.3.1"
+apscheduler = "^3.6.3"
+requests = "^2.23.0"
+kafka-python = ">=1.4.7"
+psycopg2-binary = "^2.8.5"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"

@@ -1,0 +1,17 @@
+---
+check_interval: 60
+kafka:
+  host: 'kafka-abc.aivencloud.com:27436'
+  certfile: 'certs/service.cert'
+  keyfile: 'certs/service.key'
+  cafile: 'certs/ca.pem'
+postgres:
+  host: 'pg-xyz.aivencloud.com'
+  user: 'avnadmin'
+  password: '1234567890'
+websites:
+  - url: 'https://www.aiven.io'
+    regex: 'Performant data pipelines'
+  - url: 'https://www.postgresql.org/'
+    regex: 'MySQL'
+  - url: 'https://google.com'
