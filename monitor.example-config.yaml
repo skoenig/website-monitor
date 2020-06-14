@@ -6,9 +6,7 @@ kafka:
   keyfile: 'certs/service.key'
   cafile: 'certs/ca.pem'
 postgres:
-  host: 'pg-xyz.aivencloud.com'
-  user: 'avnadmin'
-  password: '1234567890'
+  uri: 'postgres://metrics-writer:1234567890@pg-xyz.aivencloud.com:27434/metrics?sslmode=require'
 websites:
   - url: 'https://www.aiven.io'
     regex: 'Performant data pipelines'

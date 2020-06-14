@@ -11,11 +11,11 @@ cache:
   directories:
     - "$HOME/.cache/pre-commit"
 
-services:
-  - postgresql
-
 addons:
-  postgresql: "12"
+  apt:
+    packages:
+      - postgresql-12
+      - postgresql-client-12
 
 jobs:
   include:
@@ -26,17 +26,19 @@ jobs:
       script:
         - pre-commit run --all-files
     - stage: test
+      before_install:
+        - sudo cp /etc/postgresql/{9.6,12}/main/pg_hba.conf
+        - sudo pg_ctlcluster 12 main restart
+        - psql -c 'CREATE DATABASE defaultdb;' -U postgres -p 5433
+      before_script:
+        - cp monitor.example-config.yaml ~/.config/monitor.yaml
+        - |
+          sed -i "s|uri:.*$|uri: 'postgres://postgres@localhost:5433/defaultdb?sslmode=require'|" ~/.config/monitor.yaml
+      after_script:
+        - rm -f ~/.config/monitor.yaml
       install:
         - pip install --upgrade pip
         - pip install poetry
         - poetry install -v
-      before_script:
-        - cp monitor.example-config.yaml ~/.config/monitor.yaml
-        - |
-          sed -i "s|host:.*$|host: 'localhost'|" ~/.config/monitor.yaml
-          sed -i "s|user:.*$|user: 'postgres'|" ~/.config/monitor.yaml
-          sed -i "s|password:.*$|password: ''|" ~/.config/monitor.yaml
-      after_script:
-        - rm -f ~/.config/monitor.yaml
       script:
         - poetry run pytest tests
