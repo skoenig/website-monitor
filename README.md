@@ -19,7 +19,7 @@ You will need a Kafka instance with certificate/SSL authentication enabled.
 It is also assumed that you have a running PostgreSQL database which provides the [TimescaleDB](https://www.timescale.com/) extension and a user that has all privileges on a database called `metrics`.
 
 ## Installation
-You will need [Poetry](https://python-poetry.org/) to install this tool. Install dependencies and pre-commit hooks:
+Install [Poetry](https://python-poetry.org/) first, then you can use the [Makefile](Makefile) for convenience to install all dependencies with:
 
     make install
 
