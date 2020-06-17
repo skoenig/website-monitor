@@ -50,7 +50,7 @@ Before committing, you should run tests and linters (linters will also be run by
 
 ## Contributing
 
-1. Fork it (`<https://github.com/skoenig/aiven-website-monitor/fork>`)
+1. Fork it (<https://github.com/skoenig/aiven-website-monitor/fork>)
 2. Create your feature branch (`git checkout -b feature/my_feature`)
 3. Commit your changes (`git commit -am 'implemented feature xyz'`)
 4. Push to the branch (`git push origin feature/my_feature`)
