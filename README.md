@@ -1,4 +1,4 @@
-# Aiven Website Monitor
+# Website Monitor
 
 _Small conceptual website monitor using Kafka and PostgreSQL._
 
@@ -11,7 +11,7 @@ A Kafka producer periodically checks (using [APScheduler](https://apscheduler.re
 
 These result will be sent to a Kafka topic, and written to a PostgreSQL database by a Kafka consumer.
 
-[![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://badges.mit-license.org) [![Build Status](http://img.shields.io/travis/skoenig/aiven-website-monitor.svg?style=flat-square)](https://travis-ci.org/skoenig/aiven-website-monitor) [![Coverage Status](http://img.shields.io/coveralls/skoenig/aiven-website-monitor.svg?style=flat-square)](https://coveralls.io/r/skoenig/aiven-website-monitor)
+[![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://badges.mit-license.org) [![Build Status](http://img.shields.io/travis/skoenig/website-monitor.svg?style=flat-square)](https://travis-ci.org/skoenig/website-monitor) [![Coverage Status](http://img.shields.io/coveralls/skoenig/website-monitor.svg?style=flat-square)](https://coveralls.io/r/skoenig/website-monitor)
 
 ## Prerequisites
 You will need a Kafka instance with certificate/SSL authentication enabled.
@@ -50,7 +50,7 @@ Before committing, you should run tests and linters (linters will also be run by
 
 ## Contributing
 
-1. Fork it (<https://github.com/skoenig/aiven-website-monitor/fork>)
+1. Fork it (<https://github.com/skoenig/website-monitor/fork>)
 2. Create your feature branch (`git checkout -b feature/my_feature`)
 3. Commit your changes (`git commit -am 'implemented feature xyz'`)
 4. Push to the branch (`git push origin feature/my_feature`)

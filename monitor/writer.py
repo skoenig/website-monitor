@@ -17,7 +17,7 @@ class MetricsWriter:
                 bootstrap_servers=config["kafka"]["host"],
                 auto_offset_reset="earliest",
                 enable_auto_commit=True,
-                group_id="aiven-website-monitor",
+                group_id="website-monitor",
                 value_deserializer=lambda x: json.loads(x.decode("utf-8")),
                 security_protocol="SSL",
                 ssl_check_hostname=True,
