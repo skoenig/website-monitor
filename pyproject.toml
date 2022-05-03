@@ -9,14 +9,14 @@ repository = "https://github.com/skoenig/website-monitor"
 
 [tool.poetry.dependencies]
 python = "^3.7"
-PyYAML = "^5.3.1"
+PyYAML = "^5.4"
 apscheduler = "^3.6.3"
-requests = "^2.23.0"
+requests = "^2.25"
 kafka-python = ">=1.4.7"
 psycopg2-binary = "^2.8.5"
 
 [tool.poetry.dev-dependencies]
-pytest = "^5.2"
+pytest = "^7.1"
 pylint = "^2.5.3"
 coverage = "^5.1"
 
