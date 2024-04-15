@@ -45,7 +45,7 @@ Make sure to commit from within the Poetry virtualenv:
 
 Before committing, you should run tests and linters (linters will also be run by pre-commit hooks):
 
-    make test
+    docker compose up -d && make test; docker compose down
     make lint
 
 ## Contributing
