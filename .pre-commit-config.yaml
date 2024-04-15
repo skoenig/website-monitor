@@ -91,8 +91,8 @@ repos:
       - id: detect-private-key
       - id: mixed-line-ending
 
-  - repo: https://gitlab.com/pycqa/flake8
-    rev: master
+  - repo: https://github.com/pycqa/flake8
+    rev: main
     hooks:
       - id: flake8
 
