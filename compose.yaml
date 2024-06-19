@@ -1,9 +1,17 @@
 services:
   db:
-    image: timescale/timescaledb-ha:pg16
+    image: timescale/timescaledb:latest-pg16
     restart: always
     shm_size: 128mb
     ports:
       - '5432:5432'
     environment:
       POSTGRES_PASSWORD: '1234567890'
+    healthcheck:
+      test: ["CMD-SHELL", "sh -c 'pg_isready'"]
+      interval: 30s
+  probe:
+    image: alpine
+    depends_on:
+      db:
+        condition: service_healthy

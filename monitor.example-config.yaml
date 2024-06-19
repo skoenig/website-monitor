@@ -6,7 +6,7 @@ kafka:
   keyfile: 'certs/service.key'
   cafile: 'certs/ca.pem'
 postgres:
-  uri: 'postgres://metrics-writer:1234567890@pg-xyz.postgrescloud.io:27434/metrics?sslmode=require'
+  uri: 'postgres://postgres:1234567890@localhost:5432/?sslmode=prefer'
 websites:
   - url: 'https://github.com'
     regex: 'Pull requests'
