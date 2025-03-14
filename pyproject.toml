@@ -12,7 +12,7 @@ python = "^3.8"
 PyYAML = "^6.0.0"
 apscheduler = "^3.6.3"
 requests = "^2.32"
-kafka-python = ">=1.4.7"
+kafka-python = "2.0.6"
 psycopg2-binary = "2.9.10"
 
 [tool.poetry.dev-dependencies]
