@@ -9,7 +9,7 @@ repository = "https://github.com/skoenig/website-monitor"
 
 [tool.poetry.dependencies]
 python = "^3.8"
-PyYAML = "^6.0.0"
+PyYAML = "6.0.2"
 apscheduler = "^3.6.3"
 requests = "^2.32"
 kafka-python = "2.0.6"
