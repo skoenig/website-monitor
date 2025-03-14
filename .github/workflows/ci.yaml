@@ -1,0 +1,59 @@
+name: CI
+
+on:
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.7'
+
+      - name: Install dependencies
+        run: |
+          pip install poetry
+          poetry install -v --with dev
+          poetry run pre-commit install
+
+      - name: Run linters
+        run: make lint
+
+  test:
+    runs-on: ubuntu-latest
+    needs: lint
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.7'
+
+      - name: Install dependencies
+        run: |
+          pip install poetry
+          poetry install -v --with dev
+
+      - name: Configure monitor
+        run: |
+          mkdir -p ~/.config
+          cp monitor.example-config.yaml ~/.config/monitor.yaml
+
+      - name: Run tests
+        run: |
+          docker compose up -d
+          make test
+          docker compose down
+
+      - name: Clean up
+        if: always()
+        run: rm -f ~/.config/monitor.yaml
