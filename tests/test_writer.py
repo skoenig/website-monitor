@@ -1,5 +1,3 @@
-import os
-import unittest
 
 from monitor.writer import DBConnection
 from monitor.writer import MetricsWriter
@@ -12,7 +10,6 @@ def test_db_connection():
         assert db_connection.cursor.fetchone() == (True,)
 
 
-@unittest.skipIf(os.environ.get("TRAVIS") == "true", "Skipping this test on Travis CI.")
 def test_create_schema():
 
     MetricsWriter.create_schema()
