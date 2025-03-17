@@ -11,16 +11,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
+
+      - name: Install poetry
+        run: pipx install poetry
 
       - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v5
         with:
           python-version: '3.8.18'
+          cache: 'poetry'
 
       - name: Install dependencies
         run: |
-          pip install poetry
+          poetry env use "3.8.18"
           poetry install -v --with dev
           poetry run pre-commit install
 
@@ -32,17 +36,21 @@ jobs:
     needs: lint
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
+
+      - name: Install poetry
+        run: pipx install poetry
 
       - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v5
         with:
           python-version: '3.8.18'
+          cache: 'poetry'
 
       - name: Install dependencies
         run: |
-          pip install poetry
-          poetry install -v --with dev
+          poetry env use "3.8.18"
+          poetry install -v
 
       - name: Configure monitor
         run: |
