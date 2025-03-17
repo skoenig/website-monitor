@@ -26,7 +26,7 @@ jobs:
 
       # Cache the virtual environment and checkout
       - name: Cache environment
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           path: |
             .venv
@@ -41,7 +41,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Reuse cache
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           path: |
             .venv
@@ -59,7 +59,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Reuse cache
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           path: |
             .venv
