@@ -17,7 +17,7 @@ psycopg2-binary = "2.9.10"
 
 [tool.poetry.dev-dependencies]
 pytest = "8.3.5"
-pylint = "^2.5.3"
+pylint = "^3.0.0"
 coverage = "^7.0.0"
 pre-commit = "*"
 
