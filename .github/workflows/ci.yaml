@@ -19,7 +19,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.9.19'
+          python-version: '3.13.2'
           cache: 'poetry'
 
       - name: Install dependencies
@@ -44,7 +44,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.9.19'
+          python-version: '3.13.2'
           cache: 'poetry'
 
       - name: Install dependencies

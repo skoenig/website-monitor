@@ -9,7 +9,7 @@ repository = "https://github.com/skoenig/website-monitor"
 packages = [{ include = "monitor" }]
 
 [tool.poetry.dependencies]
-python = "3.9.*"
+python = "3.13.*"
 PyYAML = "6.0.2"
 apscheduler = "^3.6.3"
 requests = "^2.32"
