@@ -9,27 +9,19 @@ repository = "https://github.com/skoenig/website-monitor"
 packages = [{ include = "monitor" }]
 
 [tool.poetry.dependencies]
-python = "3.13.*"
+python = "3.9.*"
 PyYAML = "6.0.2"
 apscheduler = "^3.6.3"
 requests = "^2.32"
 kafka-python = "2.0.6"
 psycopg2-binary = "2.9.10"
 
-[poetry.group.dev.dependencies]
+[tool.poetry.group.dev.dependencies]
 pytest = "8.3.5"
 pylint = "^3.0.0"
 coverage = "^7.0.0"
 pre-commit = "*"
 
-
-
-#[tool.pytest.ini_options]
-##pythonpath = "."
-#addopts = [
-#    "--import-mode=importlib",
-#]
-#
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
