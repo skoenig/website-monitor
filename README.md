@@ -35,11 +35,9 @@ Run the database writer: `poetry run python3 -m monitor.writer`
 
 ## Development
 
-With the virtualenv created by Poetry you should have a complete development environment.
+With the virtualenv created by Poetry you should have a complete development environment:
 
-Make sure to commit from within the Poetry virtualenv:
-
-    poetry shell
+    poetry env activate
 
 Before committing, you should run tests and linters (linters will also be run by pre-commit hooks):
 
