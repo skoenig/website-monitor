@@ -1,15 +1,15 @@
 ---
 check_interval: 60
 kafka:
-  host: 'kafka-abc.kafkacloud.com:27436'
-  certfile: 'certs/service.cert'
-  keyfile: 'certs/service.key'
-  cafile: 'certs/ca.pem'
+  host: kafka-abc.kafkacloud.com:27436
+  certfile: certs/service.cert
+  keyfile: certs/service.key
+  cafile: certs/ca.pem
 postgres:
-  uri: 'postgres://postgres:1234567890@localhost:5432/?sslmode=prefer'
+  uri: postgres://postgres:1234567890@localhost:5432/?sslmode=prefer
 websites:
-  - url: 'https://github.com'
-    regex: 'Pull requests'
-  - url: 'https://www.postgresql.org/'
-    regex: 'MySQL'
-  - url: 'https://google.com'
+  - url: https://github.com
+    regex: Pull requests
+  - url: https://www.postgresql.org/
+    regex: MySQL
+  - url: https://google.com

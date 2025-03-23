@@ -43,14 +43,10 @@ repos:
           - tests
         stages:
           - push
-  - repo: https://github.com/adrienverge/yamllint
-    rev: v1.35.1
+  - repo: https://github.com/lyz-code/yamlfix/
+    rev: 1.17.0
     hooks:
-      - id: yamllint
-        args:
-          - --strict
-          - -d
-          - '{rules: {line-length: {max: 180}}}'
+      - id: yamlfix
   - repo: https://github.com/python-poetry/poetry
     rev: 2.1.0
     hooks:
