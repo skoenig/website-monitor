@@ -15,7 +15,6 @@ class MetricsCollector:
 
     def __init__(self):
         if not self.producer:
-
             self.producer = KafkaProducer(
                 bootstrap_servers=config["kafka"]["host"],
                 retries=5,
@@ -64,7 +63,6 @@ def monitor():
 
 
 if __name__ == "__main__":
-
     scheduler = BackgroundScheduler(deamon=True)
     scheduler.add_job(monitor, "interval", seconds=config["check_interval"])
 

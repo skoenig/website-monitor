@@ -14,14 +14,13 @@ clean-build: ## remove build artifacts
 .PHONY: clean-test
 clean-test: ## remove test and coverage artifacts
 	rm -rf .coverage .mypy_cache .pytest_cache .tox
-	rm -rf pylint-report.txt ut-report.xml
 
 .PHONY: clean
 clean: clean-pyc clean-build clean-test ## remove all build, test, coverage and Python artifacts
 
 .PHONY: install
 install: clean ## install the package to the active Python's site-packages
-	poetry install
+	poetry install -v --with dev
 	poetry run pre-commit install
 
 .PHONY: lint
@@ -36,4 +35,3 @@ test: ## run tests quickly with the default Python
 coverage: ## check code coverage quickly with the default Python
 	poetry run coverage erase
 	poetry run coverage run --branch --source=monitor -m pytest --junitxml=ut-report.xml tests/
-	poetry run pylint --rcfile=setup.cfg monitor -r n > pylint-report.txt || true

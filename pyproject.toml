@@ -18,9 +18,9 @@ psycopg2-binary = "2.9.10"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "8.3.5"
-pylint = "^3.0.0"
 coverage = "^7.0.0"
 pre-commit = "*"
+ruff = "^0.11.2"
 
 [build-system]
 requires = ["poetry-core"]

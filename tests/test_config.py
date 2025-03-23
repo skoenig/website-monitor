@@ -5,7 +5,6 @@ from monitor.config import configure
 
 
 def test_config_type():
-
     assert type(config) is dict
 
 

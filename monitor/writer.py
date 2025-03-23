@@ -8,7 +8,6 @@ from monitor.config import config
 
 
 class MetricsWriter:
-
     consumer = None
 
     def __init__(self):
