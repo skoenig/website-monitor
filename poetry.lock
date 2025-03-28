@@ -325,21 +325,21 @@ files = [
 
 [[package]]
 name = "kafka-python"
-version = "2.0.6"
+version = "2.1.4"
 description = "Pure Python client for Apache Kafka"
 optional = false
 python-versions = "*"
 groups = ["main"]
 files = [
-    {file = "kafka_python-2.0.6-py2.py3-none-any.whl", hash = "sha256:a2fdb00eaea7a827f5f74693365af6b615ff0795860261d8ebaad2bb5bc73e81"},
-    {file = "kafka_python-2.0.6.tar.gz", hash = "sha256:3ac47e7c41a67a1c23f1856c1953594440bb3d9cd532ad70e353982724e5d52d"},
+    {file = "kafka_python-2.1.4-py2.py3-none-any.whl", hash = "sha256:23340cdcd403d4f73564c068fd3b1f4b4be3fc1a89f3ef1a76d46ea889878190"},
+    {file = "kafka_python-2.1.4.tar.gz", hash = "sha256:7e45be44cc7eb3dcad8b432cc514411454d05971ad26411092577584ee15d67a"},
 ]
 
 [package.extras]
 crc32c = ["crc32c"]
 lz4 = ["lz4"]
 snappy = ["python-snappy"]
-testing = ["mock", "pytest", "pytest-mock"]
+testing = ["mock ; python_version < \"3.3\"", "pytest", "pytest-mock", "pytest-timeout"]
 zstd = ["zstandard"]
 
 [[package]]
@@ -703,4 +703,4 @@ test = ["covdefaults (>=2.3)", "coverage (>=7.2.7)", "coverage-enable-subprocess
 [metadata]
 lock-version = "2.1"
 python-versions = "3.13.*"
-content-hash = "cd2681260ab972e3fc1982366fd013dfdb033d111b0af19b474f40d7b8720b9b"
+content-hash = "4e230fa4771bb85c8f70fcd7bbf399fde555430b640cebfbeb31eb6a8b268640"
