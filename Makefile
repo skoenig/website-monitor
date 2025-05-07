@@ -28,8 +28,9 @@ lint: ## run linters, checks, formatters
 	poetry run pre-commit run --all-files
 
 .PHONY: test
-test: ## run tests quickly with the default Python
-	poetry run pytest tests
+test: ## Run tests
+	poetry run pytest -vv
+
 
 .PHONY: coverage
 coverage: ## check code coverage quickly with the default Python
