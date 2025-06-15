@@ -5,6 +5,6 @@
   ],
   "vulnerabilityAlerts": {
     "labels": ["security"],
-    "automerge": false
+    "automerge": true
   }
 }
