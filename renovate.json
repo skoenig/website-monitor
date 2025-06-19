@@ -5,6 +5,21 @@
   ],
   "vulnerabilityAlerts": {
     "labels": ["security"],
+    "enabled": true,
     "automerge": true
-  }
+  },
+  "lockFileMaintenance": {
+    "enabled": true,
+    "automerge": true
+  },
+  "packageRules": [
+    {
+      "matchUpdateTypes": [
+        "minor",
+        "patch"
+      ],
+      "matchCurrentVersion": "!/^0/",
+      "automerge": true
+    }
+  ]
 }
