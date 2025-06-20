@@ -4,9 +4,7 @@
     "config:recommended"
   ],
   "vulnerabilityAlerts": {
-    "labels": ["security"],
-    "enabled": true,
-    "automerge": true
+    "enabled": false
   },
   "lockFileMaintenance": {
     "enabled": true,
