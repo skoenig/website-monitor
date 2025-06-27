@@ -320,14 +320,14 @@ files = [
 
 [[package]]
 name = "kafka-python"
-version = "2.2.13"
+version = "2.2.14"
 description = "Pure Python client for Apache Kafka"
 optional = false
 python-versions = "*"
 groups = ["main"]
 files = [
-    {file = "kafka_python-2.2.13-py2.py3-none-any.whl", hash = "sha256:b4e13ad8fed3f62350afdbe92a887e65d2ec26fe06bd9b5f4bbe7972ab2aa696"},
-    {file = "kafka_python-2.2.13.tar.gz", hash = "sha256:4b689256bf440403226a00069e7af086c7206315f3d811de160c00bce2c9b708"},
+    {file = "kafka_python-2.2.14-py2.py3-none-any.whl", hash = "sha256:ee089dd502efe18e4cfcc1237eefde7f80689a55bd021ac9d7b805ad847d42f6"},
+    {file = "kafka_python-2.2.14.tar.gz", hash = "sha256:5779d9c2f0af4b8e0ed952fee25506f5a5e30ba97cda1614f984eb8b2083e31d"},
 ]
 
 [package.extras]
@@ -715,4 +715,4 @@ test = ["covdefaults (>=2.3)", "coverage (>=7.2.7)", "coverage-enable-subprocess
 [metadata]
 lock-version = "2.1"
 python-versions = "3.13.*"
-content-hash = "aeac87da8b813b068fc4dfe995704c6e1d397c4f5d7112f88f0c8923093cf544"
+content-hash = "0671f8f1da18d58f3b4c218e3540e10b537fca51b2f66321c9e4791af24744f6"
