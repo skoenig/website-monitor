@@ -17,6 +17,14 @@ repos:
     hooks:
       - id: check-hooks-apply
       - id: check-useless-excludes
+  # until ruff can detect dead code, use this:
+  - repo: https://github.com/asottile/dead
+    rev: v2.1.0
+    hooks:
+      - id: dead
+        args:
+          - --tests
+          - test_.*
   - repo: https://github.com/astral-sh/ruff-pre-commit
     rev: v0.11.0
     hooks:
