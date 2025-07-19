@@ -1,26 +1,27 @@
-[tool.poetry]
+[project]
 name = "monitor"
+repository = "https://github.com/skoenig/website-monitor"
 version = "0.1.1"
 description = "Small conceptual website monitor using Kafka and PostgreSQL."
-authors = ["Sören König <soeren.koenig@mailbox.org>"]
 license = "MIT"
 readme = "README.md"
-repository = "https://github.com/skoenig/website-monitor"
+requires-python = ">=3.11,<4"
+
+[tool.poetry]
 packages = [{ include = "monitor" }]
 
 [tool.poetry.dependencies]
-python = "3.13.*"
-PyYAML = "6.0.2"
-apscheduler = "^3.6.3"
-requests = "^2.32"
-kafka-python = "2.2.15"
-psycopg2-binary = "2.9.10"
+PyYAML = "6.*"
+apscheduler = "3.*"
+requests = "2.*"
+kafka-python = "2.*"
+psycopg2-binary = "2.*"
 
 [tool.poetry.group.dev.dependencies]
-pytest = "8.4.1"
-coverage = "^7.0.0"
-pre-commit = "*"
-ruff = "^0.12.0"
+pytest = "8.*"
+coverage = "7.*"
+pre-commit = "4.*"
+ruff = "0.12.*"
 
 [tool.ruff]
 lint.ignore = ["E712"]
@@ -31,5 +32,5 @@ format.quote-style = "single"
 sequence_style = "block_style"
 
 [build-system]
-requires = ["poetry-core"]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"
