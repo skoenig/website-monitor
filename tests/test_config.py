@@ -10,4 +10,4 @@ def test_config_type():
 
 def test_nonexistent_file():
     with pytest.raises(FileNotFoundError):
-        configure("/tmp/foobar.yaml")
+        configure('/tmp/foobar.yaml')

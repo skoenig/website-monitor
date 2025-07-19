@@ -13,21 +13,21 @@ class MetricsWriter:
     def __init__(self):
         if not self.consumer:
             self.consumer = KafkaConsumer(
-                bootstrap_servers=config["kafka"]["host"],
-                auto_offset_reset="earliest",
+                bootstrap_servers=config['kafka']['host'],
+                auto_offset_reset='earliest',
                 enable_auto_commit=True,
-                group_id="website-monitor",
-                value_deserializer=lambda x: json.loads(x.decode("utf-8")),
-                security_protocol="SSL",
+                group_id='website-monitor',
+                value_deserializer=lambda x: json.loads(x.decode('utf-8')),
+                security_protocol='SSL',
                 ssl_check_hostname=True,
-                ssl_certfile=config["kafka"]["certfile"],
-                ssl_keyfile=config["kafka"]["keyfile"],
-                ssl_cafile=config["kafka"]["cafile"],
+                ssl_certfile=config['kafka']['certfile'],
+                ssl_keyfile=config['kafka']['keyfile'],
+                ssl_cafile=config['kafka']['cafile'],
             )
 
     @staticmethod
     def create_schema():
-        with DBConnection() as db, open("schema.sql") as fh:
+        with DBConnection() as db, open('schema.sql') as fh:
             schema = fh.read()
             db.cursor.execute(schema)
             db.connection.commit()
@@ -49,7 +49,7 @@ class MetricsWriter:
 
     @staticmethod
     def insert_metric(db, metrics):
-        if "regex_matched" in metrics:
+        if 'regex_matched' in metrics:
             query_insert_metric = """INSERT INTO metrics (
                         job_id,
                         time,
@@ -81,11 +81,11 @@ class MetricsWriter:
         db.cursor.execute(query_insert_metric, metrics)
 
     def run(self):
-        self.consumer.subscribe(["metrics"])
+        self.consumer.subscribe(['metrics'])
         with DBConnection() as db:
             for message in self.consumer:
                 logging.info(
-                    "%s:%d:%d:%d: key=%s value=%s",
+                    '%s:%d:%d:%d: key=%s value=%s',
                     message.topic,
                     message.partition,
                     message.offset,
@@ -95,9 +95,9 @@ class MetricsWriter:
                 )
 
                 job_id = self.get_job_id(db, message)
-                metrics = message.value["metrics"]
-                metrics["job_id"] = job_id
-                metrics["timestamp"] = message.timestamp
+                metrics = message.value['metrics']
+                metrics['job_id'] = job_id
+                metrics['timestamp'] = message.timestamp
 
                 self.insert_metric(db, metrics)
 
@@ -111,7 +111,7 @@ class DBConnection:
         self.cursor = None
 
     def __enter__(self):
-        self.connection = psycopg2.connect(config["postgres"]["uri"])
+        self.connection = psycopg2.connect(config['postgres']['uri'])
         self.cursor = self.connection.cursor()
         return self
 
@@ -120,7 +120,7 @@ class DBConnection:
         self.cursor.close()
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     writer = MetricsWriter()
     writer.create_schema()
     writer.run()
