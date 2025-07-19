@@ -22,6 +22,11 @@ coverage = "^7.0.0"
 pre-commit = "*"
 ruff = "^0.12.0"
 
+[tool.ruff]
+lint.ignore = ["E712"]
+lint.per-file-ignores = {"*.ipynb" = ["ALL"]}
+format.quote-style = "single"
+
 [tool.yamlfix]
 sequence_style = "block_style"
 

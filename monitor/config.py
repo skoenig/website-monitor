@@ -4,7 +4,7 @@ import os
 import yaml
 
 
-CONFIG_FILE = os.path.expanduser("~/.config/monitor.yaml")
+CONFIG_FILE = os.path.expanduser('~/.config/monitor.yaml')
 
 
 def configure(config_file=None):
@@ -13,9 +13,9 @@ def configure(config_file=None):
 
     if not os.path.isfile(config_file):
         raise FileNotFoundError(
-            f"config file {config_file} not found, unable to start the services"
+            f'config file {config_file} not found, unable to start the services'
         )
-    with open(config_file, "r") as file_handle:
+    with open(config_file, 'r') as file_handle:
         configuration = yaml.load(file_handle, Loader=yaml.FullLoader)
 
     return configuration
