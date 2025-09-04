@@ -5,7 +5,7 @@ version = "0.1.1"
 description = "Small conceptual website monitor using Kafka and PostgreSQL."
 license = "MIT"
 readme = "README.md"
-requires-python = ">=3.11,<4"
+requires-python = ">=3.12,<4"
 
 [tool.poetry]
 packages = [{ include = "monitor" }]
