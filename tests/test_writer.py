@@ -10,3 +10,11 @@ def test_db_connection():
 
 def test_create_schema():
     MetricsWriter.create_schema()
+
+
+def test_kafka_connection():
+    writer = MetricsWriter()
+    assert type(writer.consumer.topics()) is set, (
+        'MetricsWriter should connect to Kafka'
+    )
+    writer.consumer.close()

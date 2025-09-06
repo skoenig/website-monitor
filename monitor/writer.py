@@ -11,19 +11,24 @@ class MetricsWriter:
     consumer = None
 
     def __init__(self):
+        kafka_config = {
+            'bootstrap_servers': config['kafka']['host'],
+            'auto_offset_reset': 'earliest',
+            'enable_auto_commit': True,
+            'group_id': 'website-monitor',
+            'value_deserializer': lambda x: json.loads(x.decode('utf-8')),
+        }
+
+        # Add SSL-related configuration only if the keys exist in the config
+        if 'ssl_certfile' in config['kafka'] and config['kafka']['ssl_certfile']:
+            kafka_config['security_protocol'] = 'SSL'
+            kafka_config['ssl_check_hostname'] = True
+            kafka_config['ssl_certfile'] = config['kafka']['ssl_certfile']
+            kafka_config['ssl_keyfile'] = config['kafka']['ssl_keyfile']
+            kafka_config['ssl_cafile'] = config['kafka']['ssl_cafile']
+
         if not self.consumer:
-            self.consumer = KafkaConsumer(
-                bootstrap_servers=config['kafka']['host'],
-                auto_offset_reset='earliest',
-                enable_auto_commit=True,
-                group_id='website-monitor',
-                value_deserializer=lambda x: json.loads(x.decode('utf-8')),
-                security_protocol='SSL',
-                ssl_check_hostname=True,
-                ssl_certfile=config['kafka']['certfile'],
-                ssl_keyfile=config['kafka']['keyfile'],
-                ssl_cafile=config['kafka']['cafile'],
-            )
+            self.consumer = KafkaConsumer(**kafka_config)
 
     @staticmethod
     def create_schema():
