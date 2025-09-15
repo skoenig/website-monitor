@@ -12,30 +12,17 @@ lint: ## Run linters, checks, formatters
 test: ## Run tests
 	poetry run pytest -vv
 
-clean: clean-pyc clean-build clean-test ## Remove all build, test, coverage and Python artifacts
-
-.PHONY: clean-pyc
-clean-pyc: ## Remove Python file artifacts
+clean: ## Clean test, coverage and Python artifacts
+	find . -name '__pycache__' -exec rm -rf {} +
 	find . -name '*.pyc' -exec rm -f {} +
 	find . -name '*.pyo' -exec rm -f {} +
 	find . -name '*~' -exec rm -f {} +
-	find . -name '__pycache__' -exec rm -rf {} +
-
-.PHONY: clean-build
-clean-build: ## Remove build artifacts
-	rm -rf build dist .eggs
-	find . -name '*.egg-info' -exec rm -rf  {} +
-	find . -name '*.egg' -exec rm -f {} +
-
-.PHONY: clean-test
-clean-test: ## Remove test and coverage artifacts
-	rm -rf .coverage .mypy_cache .pytest_cache .tox
-
+	rm -rf .coverage .pytest_cache .ruff_cache
 
 .PHONY: coverage
-coverage: ## Check code coverage quickly with the default Python
-	poetry run coverage erase
-	poetry run coverage run --branch --source=monitor -m pytest --junitxml=ut-report.xml tests/
+coverage: ## Run tests with coverage and show report
+	poetry run coverage run -m pytest -vv
+	poetry run coverage report -m
 
 help: ## Show this help message
 	@echo 'Usage: make [target]'

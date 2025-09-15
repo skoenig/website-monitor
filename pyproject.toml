@@ -8,7 +8,6 @@ readme = "README.md"
 requires-python = ">=3.12,<4"
 
 [tool.poetry]
-packages = [{ include = "monitor" }]
 
 [tool.poetry.dependencies]
 PyYAML = "6.*"
@@ -22,6 +21,19 @@ pytest = "8.*"
 coverage = "7.*"
 pre-commit = "4.*"
 ruff = "0.12.*"
+
+[tool.coverage.run]
+branch = true
+source = ["monitor"]
+
+[tool.coverage.report]
+show_missing = true
+skip_covered = true
+fail_under = 50
+exclude_lines = [
+    "pragma: no cover",
+    "if __name__ == .__main__.:",
+]
 
 [tool.ruff]
 lint.ignore = ["E712"]

@@ -41,8 +41,8 @@ With the virtualenv created by Poetry you should have a complete development env
 
 Before committing, you should run tests and linters (linters will also be run by pre-commit hooks):
 
-    docker compose up -d && make test; docker compose down
     make lint
+    docker compose up -d && make test; docker compose down
 
 ## Contributing
 
