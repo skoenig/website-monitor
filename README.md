@@ -1,8 +1,7 @@
 # Website Monitor
 
-_Small conceptual website monitor using Kafka and PostgreSQL._
-
-This tool monitors website availability over the network, produces metrics about this and passes these events through a Kafka instance into a PostgreSQL database.
+This tool implements a synthetic, active monitoring check for website availability and performance tracking.
+This was originally a homework assignment I issued to candidates for SRE positions at a previous company. The exact implementation was left open, as this allows to assess the solution finding appaorch. Today, this is just an example service that shows one possible option and lab repository.
 
 A Kafka producer periodically checks (using [APScheduler](https://apscheduler.readthedocs.io/en/stable/)) the monitored websites and fetches following metrics:
 - HTTP response time in microseconds
