@@ -17,7 +17,7 @@ kafka-python = "2.*"
 psycopg2-binary = "2.*"
 
 [tool.poetry.group.dev.dependencies]
-pytest = "8.*"
+pytest = "9.*"
 coverage = "7.*"
 pre-commit = "4.*"
 ruff = "0.14.*"
