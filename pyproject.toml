@@ -20,7 +20,7 @@ psycopg2-binary = "2.*"
 pytest = "9.*"
 coverage = "7.*"
 pre-commit = "4.*"
-ruff = "0.14.*"
+ruff = "0.15.*"
 
 [tool.coverage.run]
 branch = true
