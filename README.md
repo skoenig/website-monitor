@@ -15,24 +15,24 @@ You will need a Kafka instance with certificate/SSL authentication enabled.
 
 It is also assumed that you have a running PostgreSQL database which provides the [TimescaleDB](https://www.timescale.com/) extension and a user that has all privileges on a database called `metrics`.
 
-## Installation
-Install [Poetry](https://python-poetry.org/) and [pre-commit](https://pre-commit.com/) first, then you can use the [Makefile](Makefile) for convenience to install all dependencies with:
-
-    make install
-
-The configuration for both the Kafka producer and consumer is expected in `~/.config/monitor.yaml`, copy the [example config](monitor.example-config.yaml) as a starting point:
-
-    cp monitor.example-config.yaml ~/.config/monitor.yaml
+The configuration for both the Kafka producer and consumer is expected in `~/.config/monitor.yaml`, have a look at the [example config](monitor.example-config.yaml) as a starting point
 
 The database writer will create the needed tables with [schema.sql](schema.sql) on startup.
 
-## Usage example
+## Usage
 
-Run the collector: `poetry run python3 -m monitor.collector`
+To run all services (database, Kafka, collector, and writer) using Docker Compose:
 
-Run the database writer: `poetry run python3 -m monitor.writer`
+    docker compose up -d
+
+To stop them:
+
+    docker compose down
 
 ## Development
+Install [Poetry](https://python-poetry.org/) and [pre-commit](https://pre-commit.com/) first, then you can use the [Makefile](Makefile) for convenience to install all dependencies with:
+
+    make install
 
 With the virtualenv created by Poetry you should have a complete development environment:
 
