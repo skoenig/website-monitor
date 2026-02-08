@@ -42,12 +42,8 @@ jobs:
         run: |
           poetry env use 3.12
           poetry install -v
-      - name: Configure monitor
-        run: |
-          mkdir -p ~/.config
-          cp monitor.example-config.yaml ~/.config/monitor.yaml
       - name: Run tests
-        run: |
+        run: |-
           docker compose up -d
           docker compose run --rm -v "$PWD":/app --entrypoint sh writer -c \
             "poetry install --with dev && poetry run pytest -vv"
