@@ -1,17 +1,17 @@
 # Website Monitor
 
-This tool implements a synthetic, active monitoring check for website availability and performance tracking.
-This was originally a homework assignment I issued to candidates for SRE positions at a previous company. The exact implementation was left open, as this allows to assess the solution finding appaorch. Today, this is just an example service that shows one possible option and lab repository.
+> This tool implements a synthetic, active monitoring check for website availability and performance tracking.
+> This was originally a homework assignment that I liked to give to applicants for SRE positions at a previous company. The exact implementation was left open so that problem-solving skills could be evaluated. Today, this is just an example service that is a possible option in a lab repository.
 
 A Kafka producer periodically checks (using [APScheduler](https://apscheduler.readthedocs.io/en/stable/)) the monitored websites and fetches following metrics:
 - HTTP response time in microseconds
 - HTTP status code
 - boolean, whether a configured regexp pattern was found in the response body (optional)
 
-These result will be sent to a Kafka topic, and written to a PostgreSQL database by a Kafka consumer.
+The results are then sent to a Kafka topic, read from there by a Kafka consumer, and stored in a PostgreSQL database.
 
 ## Prerequisites
-You will need a Kafka instance with certificate/SSL authentication enabled.
+You will need a Kafka instance with a broker listening for plaintext communication over port 9092.
 
 It is also assumed that you have a running PostgreSQL database which provides the [TimescaleDB](https://www.timescale.com/) extension and a user that has all privileges on a database called `metrics`.
 
