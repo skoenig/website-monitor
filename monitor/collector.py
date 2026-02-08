@@ -14,16 +14,21 @@ class MetricsCollector:
     producer = None
 
     def __init__(self):
+        kafka_config = {
+            'bootstrap_servers': config['kafka']['host'],
+            'retries': 5,
+            'value_serializer': lambda x: json.dumps(x).encode('utf-8'),
+        }
+
+        # Add SSL-related configuration only if the keys exist in the config
+        if 'ssl_certfile' in config['kafka'] and config['kafka']['ssl_certfile']:
+            kafka_config['security_protocol'] = 'SSL'
+            kafka_config['ssl_check_hostname'] = True
+            kafka_config['ssl_certfile'] = config['kafka']['ssl_certfile']
+            kafka_config['ssl_keyfile'] = config['kafka']['ssl_keyfile']
+            kafka_config['ssl_cafile'] = config['kafka']['ssl_cafile']
         if not self.producer:
-            self.producer = KafkaProducer(
-                bootstrap_servers=config['kafka']['host'],
-                retries=5,
-                value_serializer=lambda x: json.dumps(x).encode('utf-8'),
-                security_protocol='SSL',
-                ssl_certfile=config['kafka']['certfile'],
-                ssl_keyfile=config['kafka']['keyfile'],
-                ssl_cafile=config['kafka']['cafile'],
-            )
+            self.producer = KafkaProducer(**kafka_config)
 
     def run(self, job):
         job['regex'] = job.get('regex', '')

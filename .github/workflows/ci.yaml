@@ -49,8 +49,9 @@ jobs:
       - name: Run tests
         run: |
           docker compose up -d
-          make test
-          docker compose down
+          docker compose run --rm -v "$PWD":/app --entrypoint sh writer -c \
+            "poetry install --with dev && poetry run pytest -vv"
+          docker compose down --volumes --remove-orphans
       - name: Clean up
         if: always()
         run: rm -f ~/.config/monitor.yaml

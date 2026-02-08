@@ -22,7 +22,7 @@ services:
       KAFKA_NODE_ID: 1
       KAFKA_PROCESS_ROLES: broker,controller
       KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092,CONTROLLER://0.0.0.0:9093
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092,CONTROLLER://kafka:9093
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092,CONTROLLER://kafka:9093
       KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
       KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
@@ -34,9 +34,23 @@ services:
       interval: 10s
       test:
         - CMD-SHELL
-        - nc -vz localhost:9092
-  probe:
-    image: alpine
+        - nc -vz kafka:9092
+  collector:
+    build:
+      context: .
+      dockerfile: Containerfile.collector
+    volumes:
+      - ./monitor.example-config.yaml:/root/.config/monitor.yaml
+    depends_on:
+      kafka:
+        condition: service_healthy
+  writer:
+    build:
+      context: .
+      dockerfile: Containerfile.writer
+    volumes:
+      - ./monitor.example-config.yaml:/root/.config/monitor.yaml
+      - ./schema.sql:/app/schema.sql
     depends_on:
       db:
         condition: service_healthy

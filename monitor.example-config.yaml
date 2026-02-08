@@ -1,9 +1,9 @@
 ---
 check_interval: 60
 kafka:
-  host: localhost:9092
+  host: kafka:9092
 postgres:
-  uri: postgres://postgres:1234567890@localhost:5432/?sslmode=prefer
+  uri: postgres://postgres:1234567890@db:5432/?sslmode=prefer
 websites:
   - url: https://github.com
     regex: Pull requests
