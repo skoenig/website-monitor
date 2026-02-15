@@ -25,6 +25,8 @@ repos:
         args:
           - --tests
           - test_.*
+          - --exclude
+          - tests/conftest.py
   - repo: https://github.com/astral-sh/ruff-pre-commit
     rev: v0.11.2
     hooks:
